@@ -108,7 +108,7 @@ min(m3)
 range(m3)
 # which row/column does max(m3) signify
 
-# data frame from below
+# data frame from below-----
 n=30
 rollno=1:30
 (rollno=paste('F',1:30,sep='_')) # for alphanumeric rollno
@@ -121,6 +121,7 @@ set.seed(1234) # before sample command for a same patternof data
 (gender=sample(c('M','F'), size=n,replace=T,prob=c(.7,.3)))
 # for classifying M & F as per requirement ^
 table(gender)
+
 (t1=table(gender))
 prop.table(t1)
 ?prop.table # gives the %
@@ -141,7 +142,7 @@ students # data frame
 students$rollno
 students[ ,c(2,5:6)] # partricular columns req
 students[ ,c('sname','marks1','marks2')]
-# either of 142 &143 can be done
+# either of 144 &143 can be done
 str(students) # structure
 summary(students) # har column ka summary acc to factor and numeric
 quantile(students$marks1)
@@ -156,7 +157,7 @@ seq(from=1,to=100,by=3) # sequence function
 summary(students)
 str(students)
 students$rollno=as.character(students$rollno)
-students$sname=as.character(students$rollno)
+students$sname=as.character(students$sname)
 # changing category/factor to character type
 str(students)
 summary(students)
@@ -170,13 +171,27 @@ str(students)
 #students
 head(students)
 library(dplyr)
-students[students$marks1>60, ] 
+students[students$marks1>60, ] # after ',' space is left if columns are to be specified 
 students[students$gender=='F', ]                 
 # == is for checking of equality whereas = for assigning
-students[students$gender=='F'| students$college=='SRCC', ]
+students[students$gender=='F'| students$college=='SRCC', ] # '|' this symbol is for 'or'
 # highest from all college
 #dplyr down
 students%>%filter(gender=='M' & marks1>60)
+#all students with gender=M , marks1>60
 students%>%group_by(gender) %>% summarise(max(marks1),max(marks2))
 students%>%group_by(college) %>% summarise(max(marks1),max(marks2))
 students%>% filter(college=='FMS')%>% select(marks1,marks2)
+students%>%group_by(gender,college)%>%summarise(counttotal=n())
+# no of M&F in each college ^
+students%>%mutate(totalmarks=marks1+marks2)
+# mutate helps to create other column
+students%>%mutate(totalmarks=marks1+1.2*marks2)%>%arrange(-totalmarks)
+head(students) #head gives the top six value
+students%>%head(n=2)
+# can be added to command 189 ^
+students%>%slice(1:5)
+students%>%slice(1)                 
+students%>%slice(seq(1,30,2)) #every alternate row with help of seq command i.e 1 to 30 by 2
+students%>%sample_n(5) # random 5 rows
+students%>% sample_frac(.2)
