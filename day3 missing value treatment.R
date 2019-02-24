@@ -7,7 +7,9 @@ path = 'https://raw.githubusercontent.com/nikhlesh17/Training/master/titanic.csv
 titanic <- read.csv(path)
 
 is.na(titanic$survived)
-
+# how to impute missing value
+# using mean or median values,specific value, knn imputation- simple based on nearest points
+# domain knowledge,mice imputation-creates multiple copies of data set and gives multiple imputations
 sapply(titanic,function(x) sum(is.na(x)))
 mean(titanic$age)
 mean(titanic$age,na.rm = T)

@@ -126,6 +126,7 @@ caret::confusionMatrix(testData2$admit, testData2$predictClass2)
 
 head(testData2)
 
+
 misClassError(testData2$admit, testData2$predictNew, threshold = optCutOff)
 plotROC(testData2$admit, testData2$predictNew)
 Concordance(testData2$admit, testData2$predictNew)
@@ -141,9 +142,11 @@ library(InformationValue)
 confusionMatrix(data$admit, prob, threshold = optCutOff)
 (accuracy = (247+38)/ (sum(247+38+89+26))) # .715
 confusionMatrix(data$admit, prob, threshold = .7)
+
 (accuracy = (272+2)/ (sum(272+2+125+1))) #.685
 
 confusionMatrix(data$admit, prob, threshold = .2)
 
 
 print(summary(am.data))
+

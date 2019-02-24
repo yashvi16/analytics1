@@ -35,3 +35,4 @@ plot(1:5, Cluster_Variability, type="b", xlab="Number of clusters", ylab="Within
 numclust = NbClust(data, distance="euclidean",min.nc=2, max.nc=15, method="average")  
 
 table(iris$Species,fit$cluster)
+
